@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+
+  vlmcsd:
+    image: vlmcsd:latest
+    build: .
+    container_name: vlmcsd
+    # ports:
+    #   - 1688:1688
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 1122:1688
+    restart: unless-stopped
